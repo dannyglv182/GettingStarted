@@ -48,7 +48,7 @@ public class AboutEquality {
         @Override
         public int hashCode() {
             // @see http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#hashCode()
-            return super.hashCode();
+            return name.hashCode() + horsepower * 12;// return super.hashCode();
         }
     }
 
@@ -119,8 +119,8 @@ public class AboutEquality {
         Chicken chicken1 = new Chicken();
         chicken1.color = "black";
         Chicken chicken2 = new Chicken();
-        assertEquals(chicken1.equals(chicken2), __);
-        assertEquals(chicken1.hashCode() == chicken2.hashCode(), __);
+        assertEquals(chicken1.equals(chicken2), false);
+        assertEquals(chicken1.hashCode() == chicken2.hashCode(), true);
         // Does this still fit the hashCode contract? Why (not)?
         // Fix the Chicken class to correct this.
     }
