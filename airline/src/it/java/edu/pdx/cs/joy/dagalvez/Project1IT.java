@@ -27,4 +27,28 @@ class Project1IT extends InvokeMainTestCase {
     assertThat(result.getTextWrittenToStandardError(), containsString("Missing command line arguments"));
   }
 
+    @Test
+    void testWithSuccessFullArguments() {
+        // Simulating passing a single command line argument
+        String[] args = {"Alaska", "1", "PDX", "12/15/2020", "12:11", "SFO", "12/15/2020", "12:12"};
+
+        // Call main with the simulated arguments
+        InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
+
+        // Check the expected output
+        assertThat(result.getTextWrittenToStandardOut(), containsString("The flight has been added."));
+    }
+
+    @Test
+    void testWithSuccessFullArgumentsANdPrint() {
+        // Simulating passing a single command line argument
+        String[] args = {"Alaska", "1", "PDX", "12/15/2020", "12:11", "SFO", "12/15/2020", "12:12", "-print"};
+
+        // Call main with the simulated arguments
+        InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
+
+        // Check the expected output
+        assertThat(result.getTextWrittenToStandardOut(), containsString("The flight has been added."));
+    }
+
 }

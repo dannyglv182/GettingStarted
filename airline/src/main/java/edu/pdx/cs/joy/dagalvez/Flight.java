@@ -1,26 +1,46 @@
 package edu.pdx.cs.joy.dagalvez;
 
 import edu.pdx.cs.joy.AbstractFlight;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public class Flight extends AbstractFlight {
+  int flightNumber = 0;
+  String src;
+  String dest;
+  LocalDateTime deptDateAndTime;
+  LocalDateTime arriveDateAndTime;
+
   @Override
   public int getNumber() {
-    return 42;
+    return this.flightNumber;
   }
 
   @Override
   public String getSource() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+    return this.src;
   }
 
   @Override
   public String getDepartureString() {
+    /*
+    if (this.deptDate == null && this.deptTime == null) {
+      return null;
+    }
+    else if (this.deptDate != null && this.deptTime != null) {
+      return this.deptDate.toString() + " " + this.deptTime.toString();
+    }
+    return null;
+
+     */
     throw new UnsupportedOperationException("This method is not implemented yet");
   }
 
   @Override
   public String getDestination() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+    return this.dest;
+    // throw new UnsupportedOperationException("This method is not implemented yet");
   }
 
   @Override

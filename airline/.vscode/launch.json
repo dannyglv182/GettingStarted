@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch flight tests",
+            "request": "launch",
+            "mainClass":"C:\\Users\\Daniel\\Documents\\javaclass2025\\GettingStarted\\airline\\src\\test\\java\\edu\\pdx\\cs\\joy\\dagalvez\\FlightTest.java"
+        },
+        {
+            "type": "java",
+            "name": "Project1",
+            "request": "launch",
+            "mainClass": "edu.pdx.cs.joy.dagalvez.Project1",
+            "projectName": "airline"
+        }
+    ]
+}
