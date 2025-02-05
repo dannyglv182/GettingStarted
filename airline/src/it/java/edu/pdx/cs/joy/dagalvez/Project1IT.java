@@ -15,7 +15,7 @@ class Project1IT extends InvokeMainTestCase {
      * Invokes the main method of {@link Project1} with the given arguments.
      */
     private MainMethodResult invokeMain(String... args) {
-        return invokeMain( Project1.class, args );
+        return invokeMain( Project2.class, args );
     }
 
   /**
@@ -49,6 +49,18 @@ class Project1IT extends InvokeMainTestCase {
 
         // Check the expected output
         assertThat(result.getTextWrittenToStandardOut(), containsString("1 PDX"));
+    }
+
+    @Test
+    void testWithSuccessFullArgumentsAndTextFile() {
+        // Simulating passing a single command line argument
+        String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15/2020", "12:12", "-textFile", "output.txt"};
+
+        // Call main with the simulated arguments
+        InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
+
+        // Check the expected output
+        assertThat(result.getTextWrittenToStandardOut(), containsString("text files option included"));
     }
 
 }

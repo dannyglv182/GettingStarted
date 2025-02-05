@@ -24,16 +24,6 @@ public class Flight extends AbstractFlight {
 
   @Override
   public String getDepartureString() {
-    /*
-    if (this.deptDate == null && this.deptTime == null) {
-      return null;
-    }
-    else if (this.deptDate != null && this.deptTime != null) {
-      return this.deptDate.toString() + " " + this.deptTime.toString();
-    }
-    return null;
-
-     */
     throw new UnsupportedOperationException("This method is not implemented yet");
   }
 

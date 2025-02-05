@@ -58,6 +58,11 @@ public class Project1 {
         System.out.println(flight.flightNumber + " " + flight.src + " " + flight.dest + " " + flight.deptDateAndTime);
       }
 
+      // Check for text
+      if (Arrays.asList(args).contains("-textFile")) {
+        System.out.println("text file option included");
+      }
+
       // add the flight
       airline.addFlight(flight);
       System.out.println("The flight has been added.");
