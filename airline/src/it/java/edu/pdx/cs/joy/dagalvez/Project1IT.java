@@ -48,7 +48,7 @@ class Project1IT extends InvokeMainTestCase {
         InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
 
         // Check the expected output
-        assertThat(result.getTextWrittenToStandardOut(), containsString("The flight has been added."));
+        assertThat(result.getTextWrittenToStandardOut(), containsString("1 PDX"));
     }
 
 }

@@ -17,8 +17,13 @@ public class Project1 {
     return true;
   }
 
+  /**
+   * This class parses the arguments provided by the user and adds a flight to
+   * an airline
+   */
   public static void main(String[] args) {
-    Flight flight = new Flight();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
+    Flight flight = new Flight();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
 
     // No arguments provided
     if (args.length < 6) {
@@ -34,7 +39,7 @@ public class Project1 {
 
       // add the departure date
       try {
-        LocalDateTime departureDateTime = LocalDateTime.parse(args[3] + " " + args[4]);
+        LocalDateTime departureDateTime = LocalDateTime.parse(args[3] + " " + args[4], formatter);
         flight.deptDateAndTime = departureDateTime;
       } catch (Exception e) {
         System.out.println("Error: The date you entered is invalid.");
@@ -42,10 +47,10 @@ public class Project1 {
 
       // add the arrival date
       try {
-        LocalDateTime arrivalDateTime = LocalDateTime.parse(args[3] + " " + args[4]);
+        LocalDateTime arrivalDateTime = LocalDateTime.parse(args[6] + " " + args[7], formatter);
         flight.arriveDateAndTime = arrivalDateTime;
       } catch (Exception e) {
-        System.out.println("Error: The date you entered is invalid.");
+        System.out.println("Error: The arrival date you entered is invalid.");
       }
 
       // Check for print
