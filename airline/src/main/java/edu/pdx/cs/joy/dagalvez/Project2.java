@@ -1,10 +1,9 @@
 package edu.pdx.cs.joy.dagalvez;
 
 import com.google.common.annotations.VisibleForTesting;
+import edu.pdx.cs.joy.ParserException;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -71,12 +70,18 @@ public class Project2 {
                     }
                 }
 
-                System.out.println("text files option included");
                 try {
 
                     // Parse the file
                     File file = new File(args[textFileFlagPos + 1]);
                     if (file.exists() && file.length() > 0) {
+                        FileInputStream inputStream = new FileInputStream(args[textFileFlagPos + 1]);
+                        TextParser parser = new TextParser(new InputStreamReader(inputStream));
+                        try {
+                            Airline ParsedAirline = parser.parse();
+                        } catch (ParserException e) {
+                            throw new RuntimeException(e);
+                        }
                         System.out.println("file parsed");
                     }
 
@@ -88,6 +93,7 @@ public class Project2 {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                System.out.println("text files option included");
             }
 
             // add the flight

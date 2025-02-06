@@ -24,8 +24,11 @@ public class TextDumper implements AirlineDumper<Airline> {
       ) {
       pw.println(airline.getName());
       for (Flight flight : airline.getFlights()) {
+        pw.println(flight.flightNumber);
         pw.println(flight.src);
         pw.println((flight.dest));
+        pw.println(flight.deptDateAndTime.toString());
+        pw.println(flight.arriveDateAndTime.toString());
       }
       pw.flush();
     }

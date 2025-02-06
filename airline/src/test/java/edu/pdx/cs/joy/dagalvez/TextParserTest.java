@@ -3,6 +3,8 @@ package edu.pdx.cs.joy.dagalvez;
 import edu.pdx.cs.joy.ParserException;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -19,6 +21,14 @@ public class TextParserTest {
     assertThat(resource, notNullValue());
 
     TextParser parser = new TextParser(new InputStreamReader(resource));
+    Airline airline = parser.parse();
+    assertThat(airline.getName(), equalTo("Test Airline"));
+  }
+
+  @Test
+  void canParseFromFile() throws ParserException, FileNotFoundException {
+    FileInputStream inputStream = new FileInputStream("src/test/resources/edu/pdx/cs/joy/dagalvez/valid-airline.txt");
+    TextParser parser = new TextParser(new InputStreamReader(inputStream));
     Airline airline = parser.parse();
     assertThat(airline.getName(), equalTo("Test Airline"));
   }

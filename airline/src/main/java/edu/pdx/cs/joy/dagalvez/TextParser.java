@@ -24,6 +24,7 @@ public class TextParser implements AirlineParser<Airline> {
     ) {
 
       String airlineName = br.readLine();
+      String src = br.readLine();
 
       if (airlineName == null) {
         throw new ParserException("Missing airline name");

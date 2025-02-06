@@ -1,3 +1,6 @@
-Test Airline 2
-null
-null
+Alaska
+1
+LAX
+SFO
+2020-12-15T12:11
+2020-12-15T12:12
