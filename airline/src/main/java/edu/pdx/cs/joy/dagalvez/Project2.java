@@ -62,41 +62,40 @@ public class Project2 {
                 System.out.println(flight.flightNumber + " " + flight.src + " " + flight.dest + " " + flight.deptDateAndTime);
             }
 
-            // Check for text file option
+            // Check for text file option if textFile option is included
             if (Arrays.asList(args).contains("-textFile")) {
                 for (int i = 0 ; i < args.length; i++) {
                     if (args[i].equals("-textFile")) {
                         textFileFlagPos = i;
                     }
                 }
-
                 try {
-
-                    // Parse the file
+                    // Parse the file if it exists
                     File file = new File(args[textFileFlagPos + 1]);
                     if (file.exists() && file.length() > 0) {
                         FileInputStream inputStream = new FileInputStream(args[textFileFlagPos + 1]);
                         TextParser parser = new TextParser(new InputStreamReader(inputStream));
-                        try {
-                            Airline ParsedAirline = parser.parse();
-                        } catch (ParserException e) {
-                            throw new RuntimeException(e);
-                        }
-                        System.out.println("file parsed");
-                    }
+                        Airline ParsedAirline = parser.parse();
+                        System.out.println("file parsed and airline added.");
 
-                    // Dump the flight
+                    }
+                    // Dump the flight into the file
                     airline.addFlight(flight);
                     FileWriter fw = new FileWriter(args[textFileFlagPos + 1]);
                     TextDumper dumper = new TextDumper(fw);
                     dumper.dump(airline);
                 } catch (IOException e) {
+                    System.err.println("Error: No file specified.");
+                } catch (IndexOutOfBoundsException e) {
+                    System.err.println("Error: No file specified.");
+                } catch (ParserException e) {
                     throw new RuntimeException(e);
                 }
                 System.out.println("text files option included");
+                return;
             }
 
-            // add the flight
+            // add the flight when there is no file to read or write to
             airline.addFlight(flight);
             System.out.println("The flight has been added.");
         }

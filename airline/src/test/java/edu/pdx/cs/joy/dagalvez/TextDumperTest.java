@@ -31,6 +31,8 @@ public class TextDumperTest {
     Airline airline = new Airline(airlineName);
     Flight flight = new Flight();
     flight.flightNumber = 1;
+    flight.src = "PDX";
+    flight.dest = "LAX";
     airline.addFlight(flight);
     int flightNumber = airline.flight.flightNumber;
 

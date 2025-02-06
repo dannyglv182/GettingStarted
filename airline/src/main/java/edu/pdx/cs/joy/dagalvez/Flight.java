@@ -24,7 +24,8 @@ public class Flight extends AbstractFlight {
 
   @Override
   public String getDepartureString() {
-    throw new UnsupportedOperationException("This method is not implemented yet");
+    return this.src;
+    // throw new UnsupportedOperationException("This method is not implemented yet");
   }
 
   @Override
