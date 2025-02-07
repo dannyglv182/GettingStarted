@@ -73,19 +73,19 @@ class Project2IT extends InvokeMainTestCase {
         InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
 
         // Check the expected output
-        assertThat(result.getTextWrittenToStandardOut(), containsString("Error: The date you entered is invalid."));
+        assertThat(result.getTextWrittenToStandardError(), containsString("Error: The date you entered is invalid."));
     }
 
     @Test
     void badArrivalDateGetsCaught() {
         // Simulating passing a single command line argument
-        String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15-2020", "12:12", "-textFile", "output.txt"};
+        String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15-2x20", "12:12", "-textFile", "output.txt"};
 
         // Call main with the simulated arguments
         InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
 
         // Check the expected output
-        assertThat(result.getTextWrittenToStandardOut(), containsString("Error: The arrival date you entered is invalid."));
+        assertThat(result.getTextWrittenToStandardError(), containsString("Error: The arrival date you entered is invalid."));
     }
 
     @Test
@@ -98,6 +98,18 @@ class Project2IT extends InvokeMainTestCase {
 
         // Check the expected output
         assertThat(result.getTextWrittenToStandardError(), containsString("Error: No file specified."));
+    }
+
+    @Test
+    void flightNumberIsNotValid() {
+        // Simulating passing a single command line argument
+        String[] args = {"Alaska", "X", "LAX", "12/15/2020", "12:11", "SFO", "12/15-2020", "12:12", "-textFile"};
+
+        // Call main with the simulated arguments
+        InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
+
+        // Check the expected output
+        assertThat(result.getTextWrittenToStandardError(), containsString("Error: The flight number is invalid."));
     }
 
 }
