@@ -41,4 +41,13 @@ public class TextParserTest {
     TextParser parser = new TextParser(new InputStreamReader(resource));
     assertThrows(ParserException.class, parser::parse);
   }
+
+
+  @Test
+  void badDateGetsCaughtInHelper() {
+    boolean result = helper.parsedTextIsValid("output.txt");
+    assertThat(result, equalTo(true));
+  }
 }
+
+

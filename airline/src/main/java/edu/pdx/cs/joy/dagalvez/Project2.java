@@ -64,16 +64,22 @@ public class Project2 {
                         File file = new File(args[textFileFlagPos + 1]);
                         if (file.exists() && file.length() > 0) {
                             FileInputStream inputStream = new FileInputStream(args[textFileFlagPos + 1]);
-                            TextParser parser = new TextParser(new InputStreamReader(inputStream));
-                            Airline ParsedAirline = parser.parse();
-                            System.out.println("file parsed and airline added.");
 
+                            // check if the file contains valid flight information
+                            if (helper.parsedTextIsValid(args[textFileFlagPos + 1])){
+                                // Parse the data and create the airline and flight if it does
+                                TextParser parser = new TextParser(new InputStreamReader(inputStream));
+                                Airline ParsedAirline = parser.parse();
+                                System.out.println("file parsed and airline added.");
+                                return;
+                            }
+                        } else {
+                            // Dump the flight into the file
+                            airline.addFlight(flight);
+                            FileWriter fw = new FileWriter(args[textFileFlagPos + 1]);
+                            TextDumper dumper = new TextDumper(fw);
+                            dumper.dump(airline);
                         }
-                        // Dump the flight into the file
-                        airline.addFlight(flight);
-                        FileWriter fw = new FileWriter(args[textFileFlagPos + 1]);
-                        TextDumper dumper = new TextDumper(fw);
-                        dumper.dump(airline);
                     } catch (IOException e) {
                         System.err.println("Error: No file specified.");
                     } catch (IndexOutOfBoundsException e) {
