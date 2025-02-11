@@ -67,6 +67,7 @@ public class Project2 {
 
                             // check if the file contains valid flight information
                             if (helper.parsedTextIsValid(args[textFileFlagPos + 1])){
+
                                 // Parse the data and create the airline and flight if it does
                                 TextParser parser = new TextParser(new InputStreamReader(inputStream));
                                 Airline ParsedAirline = parser.parse();

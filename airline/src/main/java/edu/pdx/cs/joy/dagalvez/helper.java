@@ -5,6 +5,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class helper {
+    public static void printCommandLineUsage() {
+        System.out.println("Usage: airline - the name of the airline to be created");
+        System.out.println("Usage: flight number - the flight number");
+        System.out.println("Usage: src - the three letter code of departure airport");
+        System.out.println("Usage: depart - departure date and time 24 hour time");
+        System.out.println("Usage: dest - three letter code of arrival airport");
+        System.out.println("Usage: arrive - arrival date and time 24 hour time");
+    }
     public static boolean flightArgsAreValid(String[] args) {
         boolean flightdataPasses = true;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");

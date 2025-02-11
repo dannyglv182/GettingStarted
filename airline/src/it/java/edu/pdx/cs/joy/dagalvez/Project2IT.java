@@ -53,8 +53,7 @@ class Project2IT extends InvokeMainTestCase {
     }
 
     @Test
-    void testWithSuccessFullArgumentsAndTextFile() {
-        // Simulating passing a single command line argument
+    void testWithSuccessFullArgumentsAndTextFileThatDoesntExistDumpsContent() {
         String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15/2020", "12:12", "-textFile", "output.txt"};
 
         // Call main with the simulated arguments
@@ -65,7 +64,18 @@ class Project2IT extends InvokeMainTestCase {
     }
 
     @Test
-    void badDepartureDateGetsCaught() {
+    void ExistingFileGetsParsed() {
+        String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15/2020", "12:12", "-textFile", "existsAlready.txt"};
+
+        // Call main with the simulated arguments
+        InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
+
+        // Check the expected output
+        assertThat(result.getTextWrittenToStandardOut(), containsString("The data was parsed successfully."));
+    }
+
+    @Test
+    void badDepartureDateInArgumentGetsCaught() {
         // Simulating passing a single command line argument
         String[] args = {"Alaska", "1", "LAX", "12-15/2x20", "12:11", "SFO", "12/15/2020", "12:12", "-textFile", "output.txt"};
 
@@ -79,7 +89,7 @@ class Project2IT extends InvokeMainTestCase {
     @Test
     void badArrivalDateArgumentGetsCaught() {
         // Simulating passing a single command line argument
-        String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15-2x20", "12:12", "-textFile", "output.txt"};
+        String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15-2x20", "12:12", "-textFile", "badparse.txt"};
 
         // Call main with the simulated arguments
         InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
@@ -101,9 +111,9 @@ class Project2IT extends InvokeMainTestCase {
     }
 
     @Test
-    void noTextFileGetsCaught() {
+    void noTextFileGetsCaughtWhenAllOtherAreCorrect() {
         // Simulating passing a single command line argument
-        String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15-2020", "12:12", "-textFile"};
+        String[] args = {"Alaska", "1", "LAX", "12/15/2020", "12:11", "SFO", "12/15/2020", "12:12", "-textFile"};
 
         // Call main with the simulated arguments
         InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);
@@ -115,7 +125,7 @@ class Project2IT extends InvokeMainTestCase {
     @Test
     void flightNumberArgumentIsNotValid() {
         // Simulating passing a single command line argument
-        String[] args = {"Alaska", "X", "LAX", "12/15/2020", "12:11", "SFO", "12/15-2020", "12:12", "-textFile"};
+        String[] args = {"Alaska", "X", "LAX", "12/15/2020", "12:11", "SFO", "12/15-2020", "12:12", "-textFile", "output.txt"};
 
         // Call main with the simulated arguments
         InvokeMainTestCase.MainMethodResult result = this.invokeMain(args);

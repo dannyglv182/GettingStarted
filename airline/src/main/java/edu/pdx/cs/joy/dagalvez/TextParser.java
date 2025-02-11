@@ -34,6 +34,7 @@ public class TextParser implements AirlineParser<Airline> {
         throw new ParserException("Missing airline name");
       }
 
+
       if (flightNumber == null) {
         throw new ParserException("Missing flight number");
       }
@@ -53,6 +54,8 @@ public class TextParser implements AirlineParser<Airline> {
       if (arrivalTime == null) {
         throw new ParserException("Missing arrival time");
       }
+
+
       return new Airline(airlineName);
 
     } catch (IOException e) {

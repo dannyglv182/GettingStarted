@@ -16,6 +16,10 @@ public class TextDumper implements AirlineDumper<Airline> {
     this.writer = writer;
   }
 
+  /**
+   * Dumps the details of an airline, including its name and flight information, to a writer.
+   * @param airline The airline object
+   */
   @Override
   public void dump(Airline airline) {
 
